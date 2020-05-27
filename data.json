@@ -1,0 +1,51 @@
+[
+    {
+        "id": 601,
+        "title": "USJT",
+        "nickname": "Abrir Chat",      
+        "lat": -23.568993,
+        "lng": -46.71379
+        
+      },
+      {
+        "id": 602,
+        "title": "Faria Lima",
+        "nickname": "Abrir Chat",
+          "lat": -23.567256,
+          "lng": -46.693959
+      },
+      {
+        "id": 603,
+        "title": "Pinheiros",
+        "nickname": "abrir Chat",
+          "lat": -23.566425,
+          "lng": -46.703054
+
+      },
+      {
+        "id": 604,
+        "title": "Paulista",
+        "nickname": "Abrir Chat",
+          "lat": -23.55858,
+          "lng": -46.659353
+
+      },
+      {
+        "id": 605,
+        "title": "Cachoeirinha",
+        "nickname": "Abrir Chat",
+          "lat": -23.4689,
+          "lng": -46.663421
+        
+      },
+      {
+        "id": 606,
+        "title": "Saude",
+        "nickname": "Abrir Chat",
+          "lat": -23.618245,
+          "lng": -46.639191
+        
+      }
+
+
+]
