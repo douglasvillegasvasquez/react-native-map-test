@@ -2,24 +2,24 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { Button,StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 //import Geolocalizacao from './Geolocalizacao';
 
-export default function MessagesScreen({navigation}) {
- return (
+export default function MessagesScreen({ navigation }) {
+  return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <Button color="orange" title="Favoritos" onPress={() => navigation.navigate('SavedScreen')}/>
-      <Button color="orange" title="Voltar para Perfil" onPress={() => navigation.navigate('Profile')} />     
+      <Button color="orange" title="Favoritos" onPress={() => navigation.navigate('SavedScreen')} />
+      <Button color="orange" title="Voltar para Perfil" onPress={() => navigation.navigate('Profile')} />
       <OptionButton
         icon="md-chatboxes"
         label="Chat Paulista"
-       />
+      />
 
       <OptionButton
         icon="md-chatboxes"
         label="Chat Faria Lima"
-        
+
       />
 
       <OptionButton
@@ -32,7 +32,7 @@ export default function MessagesScreen({navigation}) {
         label="Chat Saude"
         isLastOption
       />
-       <Button title="Criar novo Chat" onPress={() => navigation.navigate('Button')} /> 
+      <Button title="Criar novo Chat" onPress={() => navigation.navigate('Button')} />
     </ScrollView>
   );
 }
