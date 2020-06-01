@@ -9,8 +9,8 @@ import { RectButton, ScrollView } from 'react-native-gesture-handler';
 export default function MessagesScreen({navigation}) {
  return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <Button title="Favoritos" onPress={() => navigation.navigate('SavedScreen')}/>
-      <Button title="Voltar para Perfil" onPress={() => navigation.navigate('Profile')} />     
+      <Button color="orange" title="Favoritos" onPress={() => navigation.navigate('SavedScreen')}/>
+      <Button color="orange" title="Voltar para Perfil" onPress={() => navigation.navigate('Profile')} />     
       <OptionButton
         icon="md-chatboxes"
         label="Chat Paulista"

@@ -8,8 +8,8 @@ import GeoLocalizacao from '../screens/GeoLocalizacao'
 import MessagesScreen from '../screens/MessagesScreen'
 import SavedScreen from '../screens/SavedScreen'
 import Mapa from '../screens/Mapa'
+import Mapas from '../screens/Mapas'
 import Pegar from '../screens/Pegar'
-import Pegar2 from '../screens/Pegar2'
 import Teste from '../screens/Teste'
   
 
@@ -37,15 +37,16 @@ const SwitchNavigator = createSwitchNavigator(
         Mapa: {
             screen: Mapa
         },
+        Mapas: {
+            screen: Mapas
+        },
         Teste: {
             screen: Teste
         },
         Pegar: {
             screen: Pegar
         },
-        Pegar2: {
-            screen: Pegar2
-        }
+        
 
 
     },

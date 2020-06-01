@@ -13,26 +13,15 @@ class Profile extends React.Component {
         Firebase.auth().signOut()
         this.props.navigation.navigate('Login')
     }
-//ajuste pra ir proxima tela nao funciona
-    goApp2 = () => {
-        Firebase.auth()
-        this.props.navigation.navigate('GeoLocalizacao')
-    }
-    goApp3 = () => {
-      Firebase.auth()
-      this.props.navigation.navigate('Pegar')
-  }
-  goApp4 = () => {
-    Firebase.auth()
-    this.props.navigation.navigate('Pegar2')
-}
-goApp5 = () => {
-  Firebase.auth()
-  this.props.navigation.navigate('Mapa')
-}
+
+  
 goApp6 = () => {
   Firebase.auth()
   this.props.navigation.navigate('Teste')
+}
+goApp7 = () => {
+  Firebase.auth()
+  this.props.navigation.navigate('Mapas')
 }
     render() {
         return (
@@ -44,41 +33,30 @@ goApp6 = () => {
             onPress={this.goApp2}    
             />
             <OptionButton
-            icon="md-planet"
-            label="Abrir Mapa function const"
+            icon="md-mail"
+            label={ this.props.user.email}
             title= "Entrar no App"
             onPress={this.goApp2}    
             />
+            
             <OptionButton
-            icon="md-search"
-            label="Teste de Firebase API class state"
-            title= "Entrar no App"
-            onPress={this.goApp3}    
-            />
-            <OptionButton
-            icon="md-heart"
-            label="Teste Firebase API function const"
-            title= "Entrar no App"
-            onPress={this.goApp4}    
-            />
-            <OptionButton
-            icon="md-planet"
-            label="Abrir Mapa class state"
-            title= "Entrar no App"
-            onPress={this.goApp5}    
-            />
-            <OptionButton
-            icon="md-print"
+            icon="md-add-circle"
             label="Salvos"
             title= "Entrar no App"
             onPress={this.goApp6}    
+            />
+            <OptionButton
+            icon="md-map"
+            label="Mapa teste"
+            title= "Entrar no App"
+            onPress={this.goApp7}    
             />
             <OptionButton
             label="Sair"
             onPress={this.handleSignout} 
             />
 
-
+            
             </ScrollView>
         )
     }

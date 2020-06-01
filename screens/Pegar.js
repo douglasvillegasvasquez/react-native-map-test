@@ -8,7 +8,7 @@ export default class Pegar extends React.Component {
     
         this.state = {
             isLoading:true,
-            dataSource:null,
+            
              
         }
     }
@@ -41,13 +41,7 @@ export default class Pegar extends React.Component {
             )
         }else{
 
-            let group = this.state.donors.map((val,key) =>{
-                return <View key={key} style={styles.item}>
-                    <Text>{val.group}</Text>
-                </View>
-
-            });
-            let latitude = this.state.donors.map((val,key) =>{
+             let latitude = this.state.donors.map((val,key) =>{
                 return <View key={key} style={styles.item}>
                     <Text>{val.latitude}</Text>
                 </View>
@@ -57,20 +51,7 @@ export default class Pegar extends React.Component {
                 return <View key={key} style={styles.item}>
                     <Text>{val.longitude}</Text>
                 </View>
-
-            });
-            let name = this.state.donors.map((val,key) =>{
-                return <View key={key} style={styles.item}>
-                    <Text>{val.name}</Text>
-                </View>
-
-            });
-            let mobile = this.state.donors.map((val,key) =>{
-                return <View key={key} style={styles.item}>
-                    <Text>{val.mobile}</Text>
-                </View>
-
-            });
+                 });
             let todos = this.state.donors.map((item, index) =>{
                 return <View key={index} style={styles.item}>
                 <Text>{item.latitude}</Text>
@@ -82,14 +63,11 @@ export default class Pegar extends React.Component {
             return (
                 <ScrollView style={styles.container}>
                   
-   
-                  {group}
-                  {latitude}
-                  {longitude}
-                  {name}
-                  {mobile}
+   {latitude}{longitude}
+   {key}
                   {todos}
-                  <Button title="Voltar para Perfil" onPress={() => this.props.navigation.navigate('Profile')} />
+                  {todos}
+                  <Button color="orange" title="Voltar para Perfil" onPress={() => this.props.navigation.navigate('Profile')} />
                 </ScrollView>
             )
         }
@@ -114,3 +92,34 @@ const styles = StyleSheet.create({
 
     }
 })
+
+           // let group = this.state.donors.map((val,key) =>{
+            //     return <View key={key} style={styles.item}>
+            //         <Text>{val.group}</Text>
+            //     </View>
+
+            // });
+            // let latitude = this.state.donors.map((val,key) =>{
+            //     return <View key={key} style={styles.item}>
+            //         <Text>{val.latitude}</Text>
+            //     </View>
+
+            // });
+            // let longitude = this.state.donors.map((val,key) =>{
+            //     return <View key={key} style={styles.item}>
+            //         <Text>{val.longitude}</Text>
+            //     </View>
+
+            // });
+            // let name = this.state.donors.map((val,key) =>{
+            //     return <View key={key} style={styles.item}>
+            //         <Text>{val.name}</Text>
+            //     </View>
+
+            // });
+            // let mobile = this.state.donors.map((val,key) =>{
+            //     return <View key={key} style={styles.item}>
+            //         <Text>{val.mobile}</Text>
+            //     </View>
+
+            // });
