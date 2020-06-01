@@ -33,6 +33,9 @@ const initialState = {
     longitudeDelta:0.00421 * 1.5,
 }
 
+
+
+
 const App =({navigation}) => {
     const [curentPosition, setCurentPosition] = useState(initialState);
     useEffect(() => {
@@ -62,6 +65,7 @@ const App =({navigation}) => {
         showsUserLocation
         initialRegion={curentPosition}
         >     
+     
      
 {Data.map(post => (
  <Marker
@@ -100,7 +104,7 @@ const App =({navigation}) => {
             paddingRight: 40,
             paddingLeft: 20
           }}
-
+ 
         >
           {Data.map(post => (
             <View key={post.id} style={{ width: CARD_WIDTH, marginHorizontal: 5 }} >
@@ -114,7 +118,7 @@ const App =({navigation}) => {
               <Text style={{ fontSize: 15, fontWeight: "bold", marginBottom: 4 }} >
                 {post.title}
               </Text>
-             <Button title={post.nickname} onPress={() => navigation.navigate('Mensagens')}></Button>
+             <Button title={post.nickname} onPress={() => navigation.navigate('MessagesScreen')}></Button>
             </View>
           ))}
         </ScrollView>

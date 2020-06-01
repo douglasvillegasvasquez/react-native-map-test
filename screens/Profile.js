@@ -6,66 +6,133 @@ import { connect } from 'react-redux'
 import Firebase from '../config/Firebase'
 
 class Profile extends React.Component {
-  handleSignout = () => {
-    Firebase.auth().signOut()
-    this.props.navigation.navigate('Login')
+  static navigationOptions = {
+    title: 'Profile'
+}
+    handleSignout = () => {
+        Firebase.auth().signOut()
+        this.props.navigation.navigate('Login')
+    }
+//ajuste pra ir proxima tela nao funciona
+    goApp2 = () => {
+        Firebase.auth()
+        this.props.navigation.navigate('GeoLocalizacao')
+    }
+    goApp3 = () => {
+      Firebase.auth()
+      this.props.navigation.navigate('Pegar')
   }
-  //ajuste pra ir proxima tela nao funciona
-  goApp2 = () => {
+  goApp4 = () => {
     Firebase.auth()
-    this.props.navigation.navigate('GeoLocalizacao')
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        {/* <OptionButton
-            icon="md-person"
-            label={this.props.user.fullname}
-            onPress={this.goApp2}    
-            /> */}
-        <Button
-          title='Teste'
-          onPress={() => this.props.navigation.navigate('Teste')}
-        />
+    this.props.navigation.navigate('Pegar2')
+}
+goApp5 = () => {
+  Firebase.auth()
+  this.props.navigation.navigate('Mapa')
+}
+goApp6 = () => {
+  Firebase.auth()
+  this.props.navigation.navigate('Teste')
+}
+    render() {
+        return (
+          <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
         <OptionButton
-          label="Sair"
-          onPress={this.handleSignout}
-        />
+            icon="md-person"
+            label={ this.props.user.fullname}
+            title= "Entrar no App"
+            onPress={this.goApp2}    
+            />
+            <OptionButton
+            icon="md-planet"
+            label="Abrir Mapa function const"
+            title= "Entrar no App"
+            onPress={this.goApp2}    
+            />
+            <OptionButton
+            icon="md-search"
+            label="Teste de Firebase API class state"
+            title= "Entrar no App"
+            onPress={this.goApp3}    
+            />
+            <OptionButton
+            icon="md-heart"
+            label="Teste Firebase API function const"
+            title= "Entrar no App"
+            onPress={this.goApp4}    
+            />
+            <OptionButton
+            icon="md-planet"
+            label="Abrir Mapa class state"
+            title= "Entrar no App"
+            onPress={this.goApp5}    
+            />
+            <OptionButton
+            icon="md-print"
+            label="Salvos"
+            title= "Entrar no App"
+            onPress={this.goApp6}    
+            />
+            <OptionButton
+            label="Sair"
+            onPress={this.handleSignout} 
+            />
 
 
-      </View>
-    )
-  }
+            </ScrollView>
+        )
+    }
 }
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+    return (
+      <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
+        <View style={{ flexDirection: 'row', padding:15 }}>
+          <View style={styles.optionIconContainer}>
+            <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
+          </View>
+          <View style={styles.optionTextContainer}>
+            <Text style={styles.optionText}>{label}</Text>
+          </View>
         </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
-      </View>
-    </RectButton>
-  );
-}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+      </RectButton>
+    );
   }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+     
+    },
+    contentContainer: {
+      paddingTop: 15,
+    },
+    optionIconContainer: {
+      marginRight: 12,
+    },
+    option: {
+      backgroundColor: '#fdfdfd',
+      paddingHorizontal: 15,
+      paddingVertical: 15,
+      borderWidth: StyleSheet.hairlineWidth,
+      borderBottomWidth: 0,
+      borderColor: '#ededed',
+    },
+    lastOption: {
+      borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+    optionText: {
+      fontSize: 15,
+      alignSelf: 'flex-start',
+      marginTop: 1,
+    },
 })
 
 const mapStateToProps = state => {
-  return {
-    user: state.user
-  }
+    return {
+        user: state.user
+    }
 }
 
 export default connect(mapStateToProps)(Profile)
+

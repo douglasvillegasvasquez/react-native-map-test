@@ -1,12 +1,14 @@
+
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,Button} from 'react-native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
-export default function SavedScreen() {
+export default function SavedScreen({navigation}) {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+     <Button title="Voltar para Perfil" onPress={() => navigation.navigate('Profile')} />
       <OptionButton
         icon="md-chatboxes"
         label="Chat Salvo"
