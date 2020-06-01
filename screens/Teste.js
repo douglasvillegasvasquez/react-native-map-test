@@ -5,6 +5,7 @@ import { View,TouchableOpacity,Button,ScrollView,TextInput, StyleSheet,Text,Flat
 import { Ionicons} from '@expo/vector-icons';
 import Form from 'react-native-advanced-forms';
 import { connect } from 'react-redux';
+import  moment   from 'moment';
 import { Font } from 'expo';
  class Teste extends Component {
 
@@ -24,20 +25,8 @@ import { Font } from 'expo';
       myDate: null
     };
   }
+  
 
-ShowCurrentDate = () => {
-  var data = new Date()
-  var date = new Date().getDate();
-  var month = new Date().getMonth() + 1;
-  var year = new Date().getFullYear();
-
-  Alert.alert(data + '; ' + date + '-' + month + '-' + year)
-  this.setState({
-    myDate: data
-  })
-  console.log(data + '; ' + date + '-' + month + '-' + year)
-  console.log(myDate)
-}
   async componentDidMount() {
     
     let geoOptions ={ 
@@ -55,20 +44,23 @@ ShowCurrentDate = () => {
   
 
   geoSuccess = (position) => {
-  
-    console.log(position);
-    console.log(position.coords.latitude);
+   
+
+   
+   console.log(position.coords.latitude);
     console.log(position.coords.longitude);
      
         this.setState({
           ready:true,
-          where: {lat:position.coords.latitude, lng:position.coords.longitude}
+          where: {lat:position.coords.latitude, lng:position.coords.longitude},
+         
         })
+       
     }
   
 
   async getDonor() {     
-        return fetch(`https://infocitypi.firebaseio.com/marker.json`)
+        return fetch(`https://infocitypi.firebaseio.com/markers.json`)
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
@@ -80,9 +72,9 @@ ShowCurrentDate = () => {
         });   
   }
 
-  addDonor = (name, latitude, longitude, referencia, group) => {
-    if(this.state.name != null && this.state.latitude != null && this.state.longitude != null && this.state.referencia != null && this.state.group != null){ 
-      fetch('https://infocitypi.firebaseio.com/marker.json', {
+  addDonor = (name, referencia, group) => {
+    if(this.state.name != null  && this.state.referencia != null && this.state.group != null){ 
+      fetch('https://infocitypi.firebaseio.com/markers.json', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -90,10 +82,12 @@ ShowCurrentDate = () => {
         },
         body: JSON.stringify({
           "name": name,
-          "latitude": latitude,
-          "longitude": longitude,
+          "latitude": this.state.where.lat,
+          "longitude": this.state.where.lat,
           "referencia": referencia,
           "group": group,
+          "myDate":new Date(),
+          "user":this.props.user.fullname,
           
         }),
       })
@@ -106,6 +100,7 @@ ShowCurrentDate = () => {
                     longitude: null,
                     referencia: null,
                     group: null,
+                    user: null,
                     isSubmited: true,
                    
                   })              
@@ -200,7 +195,7 @@ ShowCurrentDate = () => {
                   <View style={styles.box}>
                 
                 <Text>{item.name} </Text>
-                      <Text style={{fontSize:10,marginRight:13}} note numberOfLines={1}> {item.referencia}{ this.props.user.fullname +" digitou"}</Text>
+                      <Text style={{fontSize:10,marginRight:13}} note numberOfLines={1}> {item.referencia}</Text>
                       </View>   
                    
                    
@@ -251,24 +246,10 @@ ShowCurrentDate = () => {
                 
                 />
               </View>
-              <View rounded style = {styles.input}>
-                <TextInput style = {styles.input2} placeholder="Insira aqui a Latitude escrita abaixo" 
-                onChangeText={input => this.setState({ latitude: input })} 
-                keyboardType = { "phone-pad" }
-                />
-              </View>
-              <Text>Sua Latitude {this.state.where.lat}</Text>
-              
-              <View rounded style = {styles.input}>
-                <TextInput  style = {styles.input2}placeholder="Insira aqui a Longitude escrita abaixo" 
-                onChangeText={input => this.setState({ longitude: input })} 
-                keyboardType = { "phone-pad" }
-                />
-              </View>
-              <Text>Sua Longitude {this.state.where.lng}</Text>
+            
               <View style={styles.button}>
               <TouchableOpacity>
-              <Button color="orange"  title="Ok" onPress={ () => this.addDonor(this.state.name,this.state.latitude,this.state.longitude, this.state.mobile, this.state.group) } />
+              <Button color="orange"  title="Ok" onPress={ () => this.addDonor(this.state.name, this.state.referencia, this.state.group) } />
               </TouchableOpacity>
               </View>
 
