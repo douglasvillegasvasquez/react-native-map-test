@@ -60,7 +60,7 @@ class Teste extends Component {
 
 
   async getDonor() {
-    return fetch(`https://infocitypi.firebaseio.com/markers.json`)
+    return fetch(`https://infocitypi.firebaseio.com/marker.json`)
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
@@ -74,7 +74,7 @@ class Teste extends Component {
 
   addDonor = (name, referencia, group) => {
     if (this.state.name != null && this.state.referencia != null && this.state.group != null) {
-      fetch('https://infocitypi.firebaseio.com/markers.json', {
+      fetch('https://infocitypi.firebaseio.com/marker.json', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -83,7 +83,7 @@ class Teste extends Component {
         body: JSON.stringify({
           "name": name,
           "latitude": this.state.where.lat,
-          "longitude": this.state.where.lat,
+          "longitude": this.state.where.lng,
           "referencia": referencia,
           "group": group,
           "myDate": new Date(),
@@ -269,10 +269,10 @@ class Teste extends Component {
               </View>
             }
           </View>
-
+          
 
         </View>
-      </ScrollView >
+      </ScrollView>
     );
   }
 }
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     borderRadius: 10,
     alignItems: "flex-end",
-    height: 60,
+    height: 80,
   },
   box2: {
     padding: 15,

@@ -47,7 +47,7 @@ goApp7 = () => {
             />
             <OptionButton
             icon="md-map"
-            label="Mapa teste"
+            label="Explorar Mapa"
             title= "Entrar no App"
             onPress={this.goApp7}    
             />

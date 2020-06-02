@@ -132,7 +132,7 @@ render() {
                 longitude:parseFloat(item.longitude)
                  }}
                 
-        title={ this.props.user.fullname +" digitou"}
+        title={ item.user + " digitou"}
         description={item.name}
         
 />   
