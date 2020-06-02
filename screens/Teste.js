@@ -212,6 +212,15 @@ class Teste extends Component {
           <View style={{ backgroundColor: "#fFF", marginTop: 10 }}>
             {this.state.isSubmited
               ?
+
+              <View style={{ padding: 20 }}>
+                <TouchableOpacity onPress={() => this._toggleDonorPost()}>
+                  <Text style={{ fontSize: 20, color: '#FA0' }}>Adicionar mais Ocorrencias</Text>
+                </TouchableOpacity>
+              </View>
+
+              :
+
               <View style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}>
                 <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
                   <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#FA0', }}>Nova Ocorrencia</Text>
@@ -257,12 +266,6 @@ class Teste extends Component {
                   <Button color="orange" title="Voltar para Perfil" onPress={() => this.props.navigation.navigate('Profile')} />
 
                 </View>
-              </View>
-              :
-              <View style={{ padding: 20 }}>
-                <TouchableOpacity onPress={() => this._toggleDonorPost()}>
-                  <Text style={{ fontSize: 20, color: '#FA0' }}>Adicionar mais Ocorrencias</Text>
-                </TouchableOpacity>
               </View>
             }
           </View>
