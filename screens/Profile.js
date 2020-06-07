@@ -1,11 +1,17 @@
 import * as React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { YellowBox, View, Text, StyleSheet,TouchableWithoutFeedback,Image, Button } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux'
 import Firebase from '../config/Firebase'
 
 class Profile extends React.Component {
+  constructor() {
+    super();
+    console.ignoredYellowBox = [
+    'Setting a timer'
+    ];
+    }
   static navigationOptions = {
     title: 'Profile'
 }
@@ -22,6 +28,18 @@ goApp6 = () => {
 goApp7 = () => {
   Firebase.auth()
   this.props.navigation.navigate('Mapas')
+}
+goAppMapa = () => {
+  Firebase.auth()
+  this.props.navigation.navigate('GeoLocalizacao')
+}
+goAppMaps = () => {
+  Firebase.auth()
+  this.props.navigation.navigate('Pegar')
+}
+goApp8 = () => {
+  Firebase.auth()
+  this.props.navigation.navigate('SavedScreen')
 }
     render() {
         return (
@@ -40,8 +58,14 @@ goApp7 = () => {
             />
             
             <OptionButton
-            icon="md-add-circle"
+            icon="md-heart"
             label="Salvos"
+            title= "Entrar no App"
+            onPress={this.goApp8}    
+            />
+            <OptionButton
+            icon="md-mail"
+            label="Mensagens"
             title= "Entrar no App"
             onPress={this.goApp6}    
             />
@@ -51,13 +75,78 @@ goApp7 = () => {
             title= "Entrar no App"
             onPress={this.goApp7}    
             />
+           
             <OptionButton
             label="Sair"
             onPress={this.handleSignout} 
             />
 
+<View
+          
+          style={{
+            flex:1,
+             flexDirection:"row",
+             bottom: 0,
+            marginTop:"29.4%",
+             left: 0,
+             right: 0,
+             paddingTop: 4,
+             paddingBottom: 1,
+             backgroundColor: "#FFFFFF"
+           }}
+           contentContainerStyle={{
+             paddingRight: 20,
+             paddingLeft: 20
+           }}
+ 
+         >
+        
+           <View style={{width:70,paddingLeft:20}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Mapas')}>
+           <Ionicons name="md-search" size={34} color="gray" >
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Explorar</Text>
+           </Ionicons>
+           </TouchableWithoutFeedback>
+           </View>
+           
+           <View style={{width:70,paddingLeft:10}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('SavedScreen')}>
+           <Ionicons name="md-heart-empty" size={34} color="gray">
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Salvos</Text>
+           </Ionicons>
+           </TouchableWithoutFeedback>
+           </View>
+           <View style={{width:90,paddingLeft:10}}>
+           <Image source={require('../assets/images/logo.png')}
+           style={styles.img}
+           />
+           </View>
+           <View style={{width:70,paddingLeft:10}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Teste')}>
+           <Ionicons name="md-chatboxes" size={34} color="gray">
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Mensagens</Text>
+           </Ionicons>
+           </TouchableWithoutFeedback>
+           </View>
+           <View style={{width:70,paddingLeft:10}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Profile')}>
+           <Ionicons style={styles.textview} name="md-person" size={34} color="orange">
+           
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Perfil</Text>
+           </Ionicons>
+           
+           </TouchableWithoutFeedback>
             
+           </View>
+           
+         </View>
+         
             </ScrollView>
+            
         )
     }
 }
@@ -98,6 +187,16 @@ const styles = StyleSheet.create({
     },
     lastOption: {
       borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+    img:{
+      marginTop:1,
+      height:50,
+      width:50,
+    },
+    text:{
+      fontSize:8,
+      alignContent:'center',
+      alignItems:'center',
     },
     optionText: {
       fontSize: 15,

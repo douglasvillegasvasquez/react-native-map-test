@@ -1,13 +1,17 @@
 import React from 'react'
-import { View, TextInput, StyleSheet, Text, Button, Image, TouchableHighlight, ActivityIndicator, KeyboardAvoidingView } from 'react-native'
+import {YellowBox, View, TextInput, StyleSheet, Text, Button, Image, TouchableHighlight, ActivityIndicator, KeyboardAvoidingView } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateEmail, updatePassword, login, getUser } from '../actions/user'
 import Firebase from '../config/Firebase'
 
 class Login extends React.Component {
+   
     constructor() {
         super();
+        console.ignoredYellowBox = [
+            'Setting a timer'
+            ];
         this.unsubscriber = null;
         this.state = {
             loading: false,

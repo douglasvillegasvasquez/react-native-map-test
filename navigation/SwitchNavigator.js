@@ -9,7 +9,7 @@ import MessagesScreen from '../screens/MessagesScreen'
 import SavedScreen from '../screens/SavedScreen'
 import Mapa from '../screens/Mapa'
 import Mapas from '../screens/Mapas'
-import Pegar from '../screens/Pegar'
+
 import Teste from '../screens/Teste'
   
 
@@ -43,9 +43,7 @@ const SwitchNavigator = createSwitchNavigator(
         Teste: {
             screen: Teste
         },
-        Pegar: {
-            screen: Pegar
-        },
+  
         
 
 

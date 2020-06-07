@@ -1,16 +1,22 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Button, ScrollView, TextInput, StyleSheet, Text, FlatList, Alert, Picker } from 'react-native';
+import {YellowBox, View, TouchableOpacity,Image, Button, ScrollView,TouchableWithoutFeedback, TextInput, StyleSheet, Text, FlatList, Alert, Picker } from 'react-native';
 //import { List, ListItem,Container, Header, Content, Left, Right, Body, Title, Button,Item, Input,  } from "native-base";
 //import Communications from 'react-native-communications';
 import { Ionicons } from '@expo/vector-icons';
 import Form from 'react-native-advanced-forms';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import Icon from "react-native-vector-icons/Ionicons";
 import { Font } from 'expo';
 class Teste extends Component {
-
+  construct() {
+    YellowBox.ignoreWarnings(['Setting a timer']);
+  }
   constructor(props) {
     super(props);
+    console.ignoredYellowBox = [
+      'Setting a timer'
+      ];
     this.state = {
       isSubmited: false,
       name: null,
@@ -25,7 +31,12 @@ class Teste extends Component {
       myDate: null
     };
   }
-
+  componentWillUnmount() {
+    // fix Warning: Can't perform a React state update on an unmounted component
+    this.setState = (state,callback)=>{
+        return;
+    };
+}
 
   async componentDidMount() {
 
@@ -49,7 +60,7 @@ class Teste extends Component {
 
     console.log(position.coords.latitude);
     console.log(position.coords.longitude);
-
+    console.log("Aqui foi no Salvos")
     this.setState({
       ready: true,
       where: { lat: position.coords.latitude, lng: position.coords.longitude },
@@ -152,32 +163,39 @@ class Teste extends Component {
 
   render() {
     return (
+      <View style={{flex:1}}>
       <ScrollView>
 
-        <View style={{ backgroundColor: '#deea' }}>
-          <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', }}>
-            <Text>Ocorrencias</Text>
-          </View>
-        </View>
-        <View style={styles.timeline}>
+        
+
+        <View style={{ marginLeft: 10, marginRight: 10 }}>
+          <View style={{ backgroundColor: "#fFF", marginTop: 10 }}>
+            {this.state.isSubmited
+              ?
+              
+              <View style={{ padding: 20 }}>
+              <View style={styles.timeline}>
           <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 10 }}>
-            <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#FA0', }}>Acontecimento</Text>
-            <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#000', }}>Selecione um topico</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FA0', }}>Acontecimento</Text>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#000', }}>Selecione um topico</Text>
           </View>
 
           <View style={styles.picker}>
             <Picker
-              selectedValue={(this.state.grouptoBeFiltered && this.state.pickerValue) || 'a'}
+              selectedValue={(this.state.grouptoBeFiltered || this.state.pickerValue) || 'a'}
               onValueChange={this.onValueChange2.bind(this)}>
-              <Picker.Item label="Topicos" value="null" />
+              <Picker.Item label="SELECIONE" value="null" />
               <Picker.Item label="Alagamento" value="Alagamento" />
               <Picker.Item label="Transito intenso" value="Transito intenso" />
               <Picker.Item label="Protesto" value="Protesto" />
               <Picker.Item label="Acidente" value="Acidente" />
-              <Picker.Item label="Loja aberta" value="Loja aberta" />
-              <Picker.Item label="Situacao Onibus" value="Situacao Onibus" />
+              <Picker.Item label="Loja" value="Loja" />
+              <Picker.Item label="Ponto de Onibus" value="Ponto de Onibus" />
               <Picker.Item label="Aglomeracao" value="Aglomeracao" />
-              <Picker.Item label="Farmacia Aberta" value="Farmacia Aberta" />
+              <Picker.Item label="Farmacia" value="Farmacia" />
+              <Picker.Item label="Incendio" value="Incendio" />
+              <Picker.Item label="Mercado" value="Mercado" />
+              <Picker.Item label="Posto de gasolina" value="Posto de gasolina" />
             </Picker>
           </View>
 
@@ -186,34 +204,33 @@ class Teste extends Component {
           ?
           null
           :
+          
           <View style={{ padding: 10 }}>
+           
             {this.state.donors.filter(element => element.group == this.state.grouptoBeFiltered).map((item, index) => (
 
-              <View style={{ flex: 1, paddingTop: 10 }}>
-                <View style={styles.box2}>
-                  <Text style={{ fontSize: 18, margin: 0, padding: 0 }}>({item.group})</Text>
-                </View>
-                <View style={styles.box}>
+<View style={{ flex: 1, paddingTop: 10 }}>
 
-                  <Text style={{ fontSize: 13, fontWeight: 'bold' }} >{item.name}</Text>
-                  <Text style={{ fontSize: 10 }} note numberOfLines={1}> {item.referencia}</Text>
-                  <Text style={{ fontSize: 10 }} >{moment(new Date(item.myDate)).format("DD/MM/YYYY")}</Text>
-                  <Text style={{ fontSize: 10, fontWeight: 'bold' }} >{item.user}</Text>
-                </View>
+<View style={{width:20,paddingLeft:10}}>
+       <Text> </Text>
+</View>
+  <View style={styles.box}>
+
+    <Text style={{ fontSize: 13, fontWeight: 'bold' }} >{item.user} {moment(new Date(item.myDate)).format("DD/MM/YYYY")}</Text>
+   
+    <Text style={{ fontSize: 10, fontWeight: 'bold' }} >{item.name}</Text>
+    <Text style={{ fontSize: 12 }} note numberOfLines={3}>Ponto de Referencia {item.referencia}</Text>
+    <View></View>
+    
+  </View>
 
 
 
-              </View>
+</View>
 
-            ))}
+))}
           </View>
         }
-        <View style={{ marginLeft: 10, marginRight: 10 }}>
-          <View style={{ backgroundColor: "#fFF", marginTop: 10 }}>
-            {this.state.isSubmited
-              ?
-
-              <View style={{ padding: 20 }}>
                 <TouchableOpacity onPress={() => this._toggleDonorPost()}>
                   <Text style={{ fontSize: 20, color: '#FA0' }}>Adicionar mais Ocorrencias</Text>
                 </TouchableOpacity>
@@ -221,24 +238,27 @@ class Teste extends Component {
 
               :
 
-              <View style={{ paddingLeft: 20, paddingRight: 20, paddingBottom: 40 }}>
-                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 20 }}>
-                  <Text style={{ fontSize: 15, fontWeight: 'bold', color: '#FA0', }}>Nova Ocorrencia</Text>
+              <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 30 }}>
+                <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: 40, marginBottom:10 }}>
+                  <Text style={{ fontSize: 18, fontWeight: 'bold', color: '#FA0', }}>Nova Ocorrencia</Text>
                 </View>
 
-                <View style={styles.picker}>
+                <View style={styles.picker2}>
                   <Picker
-                    selectedValue={(this.state.group && this.state.pickerValue) || 'a'}
+                    selectedValue={(this.state.group || this.state.pickerValue) || 'a'}
                     onValueChange={this.onValueChange.bind(this)}>
-                    <Picker.Item label="Topicos" value="null" />
-                    <Picker.Item label="Alagamento" value="Alagamento" />
-                    <Picker.Item label="Transito intenso" value="Transito intenso" />
-                    <Picker.Item label="Protesto" value="Protesto" />
-                    <Picker.Item label="Acidente" value="Acidente" />
-                    <Picker.Item label="Loja aberta" value="Loja aberta" />
-                    <Picker.Item label="Situacao Onibus" value="Situacao Onibus" />
-                    <Picker.Item label="Aglomeracao" value="Aglomeracao" />
-                    <Picker.Item label="Farmacia Aberta" value="Farmacia Aberta" />
+              <Picker.Item label="SELECIONE" value="null" />
+              <Picker.Item label="Alagamento" value="Alagamento" />
+              <Picker.Item label="Transito intenso" value="Transito intenso" />
+              <Picker.Item label="Protesto" value="Protesto" />
+              <Picker.Item label="Acidente" value="Acidente" />
+              <Picker.Item label="Loja" value="Loja" />
+              <Picker.Item label="Ponto de Onibus" value="Ponto de Onibus" />
+              <Picker.Item label="Aglomeracao" value="Aglomeracao" />
+              <Picker.Item label="Farmacia" value="Farmacia" />
+              <Picker.Item label="Incendio" value="Incendio" />
+              <Picker.Item label="Mercado" value="Mercado" />
+              <Picker.Item label="Posto de gasolina" value="Posto de gasolina" />
                   </Picker>
                 </View>
 
@@ -254,6 +274,7 @@ class Teste extends Component {
 
                   />
                 </View>
+               
 
                 <View style={styles.button}>
                   <TouchableOpacity>
@@ -261,18 +282,80 @@ class Teste extends Component {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.button}>
-
-                  <Button color="orange" title="Voltar para Perfil" onPress={() => this.props.navigation.navigate('Profile')} />
-
-                </View>
               </View>
             }
           </View>
           
 
         </View>
+        
       </ScrollView>
+      <View
+          
+          style={{
+            
+            position:"absolute",
+             flexDirection:"row",
+             bottom: 0,
+            marginTop:"62.2%",
+             left: 0,
+             right: 0,
+             paddingTop: 4,
+             paddingBottom: 1,
+             backgroundColor: "#FFFFFF"
+           }}
+           contentContainerStyle={{
+             paddingRight: 20,
+             paddingLeft: 20
+           }}
+ 
+         >
+        
+           <View style={{width:70,paddingLeft:20}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Mapas')}>
+           <Ionicons name="md-search" size={34} color="gray" >
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Explorar</Text>
+           </Ionicons>
+           </TouchableWithoutFeedback>
+           </View>
+           
+           <View style={{width:70,paddingLeft:10}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('SavedScreen')}>
+           <Ionicons name="md-heart-empty" size={34} color="gray">
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Salvos</Text>
+           </Ionicons>
+           </TouchableWithoutFeedback>
+           </View>
+           <View style={{width:90,paddingLeft:10}}>
+           <Image source={require('../assets/images/logo.png')}
+           style={styles.img}
+           />
+           </View>
+           <View style={{width:70,paddingLeft:10}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Teste')}>
+           <Ionicons name="md-chatboxes" size={34} color="orange">
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Mensagens</Text>
+           </Ionicons>
+           </TouchableWithoutFeedback>
+           </View>
+           <View style={{width:70,paddingLeft:10}}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Profile')}>
+           <Ionicons style={styles.textview} name="md-person" size={34} color="gray">
+           
+           <Text style={styles.text}>         </Text>
+           <Text style={styles.text}>Perfil</Text>
+           </Ionicons>
+           
+           </TouchableWithoutFeedback>
+            
+           </View>
+           
+         </View>
+      
+      </View>
     );
   }
 }
@@ -281,25 +364,46 @@ const styles = StyleSheet.create({
   picker: {
     borderWidth: 1,
     borderColor: '#848484',
-    marginLeft: 60,
-    marginRight: 60,
+    marginLeft: 30,
+    marginRight: 30,
     marginBottom: 50,
-    backgroundColor: "#AAAA"
+    backgroundColor: "#fffafa",
+    paddingBottom:5,
+  },
+  picker2: {
+    borderWidth: 1,
+    borderColor: '#848484',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 50,
+    backgroundColor: "#fffafa",
+    paddingBottom:5,
+    shadowOpacity: 1
   },
   box: {
-    backgroundColor: "#f0ae67",
+    backgroundColor: "#dcf8c6",
     padding: 10,
-    marginRight: 40,
+    marginRight: 30,
     marginLeft: 30,
     borderRadius: 10,
-    alignItems: "flex-end",
-    height: 80,
+    alignItems: "flex-start",
+    height: 'auto',
   },
   box2: {
     padding: 15,
     marginTop: 10,
     alignItems: "center",
 
+  },
+  img:{
+    marginTop:1,
+    height:50,
+    width:50,
+  },
+  text:{
+    fontSize:8,
+    alignContent:'center',
+    alignItems:'center',
   },
   timeline: {
     height: 200
@@ -309,7 +413,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 30
   },
-  input: { marginBottom: 20, marginTop: 20, height: 35, borderBottomWidth: 1, backgroundColor: "#FFF", borderRadius: 10 }
+  input: { marginBottom: 20, marginTop: 20, height: 35, borderBottomWidth: 1, backgroundColor: "#FFFAFA", borderRadius: 10 }
   , input2: {
     marginLeft: 9
   }
@@ -320,3 +424,6 @@ const mapStateToProps = state => {
   }
 }
 export default connect(mapStateToProps)(Teste)
+/* <Image  source={require('../assets/images/car-crash-solid.png')}
+          style={styles.img}
+          />*/

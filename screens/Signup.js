@@ -1,10 +1,11 @@
 import React from 'react'
-import { Platform, Image, View, TextInput, StyleSheet, TouchableOpacity, Text, ActivityIndicator, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
+import {YellowBox, Platform, Image, View, TextInput, StyleSheet, TouchableOpacity, Text, ActivityIndicator, TouchableHighlight, KeyboardAvoidingView } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { updateFullname, updateEmail, updatePassword, signup } from '../actions/user'
 
 class Signup extends React.Component {
+
     handleSignUp = () => {
         this.props.signup()
         this.props.navigation.navigate('Login')
