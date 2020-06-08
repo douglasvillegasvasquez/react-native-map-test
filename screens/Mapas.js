@@ -207,9 +207,78 @@ render() {
             }}
                           
             region={props.region} style={styles.map}>
-            
-                
-                {this.state.donors.filter(element => element.group == this.state.grouptoBeFiltered).map((item, index) =><Marker
+ {this.state.grouptoBeFiltered == null || this.state.grouptoBeFiltered == "null"
+          ? 
+<View>
+{this.state.donors.map((item, index) =>
+                <Marker
+                key={index}  
+                coordinate={{
+                latitude:parseFloat(item.latitude),
+                longitude:parseFloat(item.longitude)
+                 }}
+                 title={ item.user + " digitou as " + moment(new Date(item.myDate)).format("HH:m") +" " + moment(new Date(item.myDate)).format("DD/MM/YYYY")}
+        description={item.name}
+
+                 >
+        {item.group == "Alagamento" ? <Image source={require('../assets/images/Alagamento.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Incendio" ? <Image source={require('../assets/images/incendio.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Protesto" ? <Image source={require('../assets/images/Protesto.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Loja" ? <Image source={require('../assets/images/loja.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Acidente" ? <Image source={require('../assets/images/AcidenteCarro.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Transito" ? <Image source={require('../assets/images/Transito.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Posto de gasolina" ? <Image source={require('../assets/images/posto.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Farmacia" ? <Image source={require('../assets/images/farmacia.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Ponto de Onibus" ? <Image source={require('../assets/images/onibus.png')}
+          style={styles.img}
+        />:null
+        
+        }  
+        {item.group == "Mercado" ? <Image source={require('../assets/images/carrinho.png')}
+          style={styles.img}
+        />:null
+        
+        }  
+                </Marker>
+   
+                )}
+                </View>
+:
+<View>
+                {this.state.donors.filter(element => element.group == this.state.grouptoBeFiltered).map((item, index) =>
+                <Marker
                 key={index}  
                 coordinate={{
                 latitude:parseFloat(item.latitude),
@@ -217,11 +286,63 @@ render() {
                  }}
         
         title={ item.user + " digitou as " + moment(new Date(item.myDate)).format("HH:m") +" " + moment(new Date(item.myDate)).format("DD/MM/YYYY")}
-        description={item.name}
+        description={item.group}>
+        {item.group == "Alagamento" ? <Image source={require('../assets/images/Alagamento.png')}
+          style={styles.img}
+        />:null
         
-/>   
-                )} 
-                     
+        }
+        {item.group == "Incendio" ? <Image source={require('../assets/images/incendio.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Protesto" ? <Image source={require('../assets/images/Protesto.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Loja" ? <Image source={require('../assets/images/loja.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Acidente" ? <Image source={require('../assets/images/AcidenteCarro.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Transito" ? <Image source={require('../assets/images/Transito.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Posto de gasolina" ? <Image source={require('../assets/images/posto.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Farmacia" ? <Image source={require('../assets/images/farmacia.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Ponto de Onibus" ? <Image source={require('../assets/images/onibus.png')}
+          style={styles.img}
+        />:null
+        
+        }
+        {item.group == "Mercado" ? <Image source={require('../assets/images/carrinho.png')}
+          style={styles.img}
+        />:null
+        
+        }    
+        </Marker>
+        
+   
+                )}
+                </View> 
+ }                   
         </MapView>
         <View
         style={{
@@ -246,7 +367,6 @@ render() {
               <Picker.Item label="Acidente" value="Acidente" />
               <Picker.Item label="Loja" value="Loja" />
               <Picker.Item label="Ponto de Onibus" value="Ponto de Onibus" />
-              <Picker.Item label="Aglomeracao" value="Aglomeracao" />
               <Picker.Item label="Farmacia" value="Farmacia" />
               <Picker.Item label="Incendio" value="Incendio" />
               <Picker.Item label="Mercado" value="Mercado" />
@@ -267,7 +387,7 @@ render() {
             
         }}
     >
-         <TouchableWithoutFeedback  color="white" title="" onPress={() => this.props.navigation.navigate('Teste')}>
+         <TouchableWithoutFeedback  color="white" title="" onPress={() => this.props.navigation.navigate('MessagesScreen')}>
           
          <Ionicons name="ios-add-circle" size={38} color="red">
           </Ionicons>
@@ -427,7 +547,7 @@ render() {
           />
           </View>
           <View style={{width:70,paddingLeft:10}}>
-          <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Teste')}>
+          <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('MessagesScreen')}>
           <Ionicons name="md-chatboxes" size={34} color="gray">
           <Text style={styles.text}>         </Text>
           <Text style={styles.text}>Mensagens</Text>

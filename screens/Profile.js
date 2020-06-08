@@ -23,7 +23,7 @@ class Profile extends React.Component {
   
 goApp6 = () => {
   Firebase.auth()
-  this.props.navigation.navigate('Teste')
+  this.props.navigation.navigate('MessagesScreen')
 }
 goApp7 = () => {
   Firebase.auth()

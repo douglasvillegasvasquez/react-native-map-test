@@ -190,8 +190,7 @@ class Teste extends Component {
               <Picker.Item label="Acidente" value="Acidente" />
               <Picker.Item label="Loja" value="Loja" />
               <Picker.Item label="Ponto de Onibus" value="Ponto de Onibus" />
-              <Picker.Item label="Aglomeracao" value="Aglomeracao" />
-              <Picker.Item label="Farmacia" value="Farmacia" />
+             <Picker.Item label="Farmacia" value="Farmacia" />
               <Picker.Item label="Incendio" value="Incendio" />
               <Picker.Item label="Mercado" value="Mercado" />
               <Picker.Item label="Posto de gasolina" value="Posto de gasolina" />
@@ -320,7 +319,7 @@ class Teste extends Component {
            />
            </View>
            <View style={{width:70,paddingLeft:10}}>
-           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('Teste')}>
+           <TouchableWithoutFeedback color="white" title="" onPress={() => this.props.navigation.navigate('MessagesScreen')}>
            <Ionicons name="md-chatboxes" size={34} color="gray">
            <Text style={styles.text}>         </Text>
            <Text style={styles.text}>Mensagens</Text>
